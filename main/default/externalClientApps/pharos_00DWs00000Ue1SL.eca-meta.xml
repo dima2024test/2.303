@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalClientApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>dmitry@paladinsolutions.io</contactEmail>
+    <distributionState>Local</distributionState>
+    <iconUrl>https://2303test2.my.salesforce.com/resource/pharos__adminapp/assets/icons/pharos_logo_color.svg</iconUrl>
+    <isProtected>false</isProtected>
+    <label>pharos_00DWs00000Ue1SL</label>
+    <logoUrl>https://2303test2.my.salesforce.com/resource/pharos__adminapp/assets/icons/pharos_logo_color.svg</logoUrl>
+    <orgScopedExternalApp>00DWs00000Ue1SL:pharos_00DWs00000Ue1SL</orgScopedExternalApp>
+</ExternalClientApplication>
