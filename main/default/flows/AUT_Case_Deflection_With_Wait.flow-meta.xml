@@ -4,7 +4,7 @@
         <name>QA_Action_Lead_Rules</name>
         <group>QA_Group</group>
         <label>QA Action Lead Rules</label>
-        <locationX>1810</locationX>
+        <locationX>1590</locationX>
         <locationY>458</locationY>
         <actionName>invocableApplyLeadAssignmentRules</actionName>
         <actionType>invocableApplyLeadAssignmentRules</actionType>
@@ -21,7 +21,10 @@
         </inputParameters>
         <nameSegment>invocableApplyLeadAssignmentRules</nameSegment>
         <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <outputParameters>
+            <assignToReference>inCaseId</assignToReference>
+            <name>error</name>
+        </outputParameters>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
@@ -239,13 +242,35 @@
             </connector>
             <label>Before 2027-01-01</label>
         </rules>
+        <rules>
+            <name>Between_2026_11_09_and_2026_12_09</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Flow.CurrentDate</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <dateValue>2026-11-09</dateValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Flow.CurrentDate</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <dateValue>2026-12-09</dateValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Case</targetReference>
+            </connector>
+            <label>Between 2026-11-09 and 2026-12-09</label>
+        </rules>
     </decisions>
     <decisions>
         <description>QA desc split field</description>
         <name>QA_Split_by_Field</name>
         <elementSubtype>SplitPathByField</elementSubtype>
         <label>QA Split by Field</label>
-        <locationX>1942</locationX>
+        <locationX>1810</locationX>
         <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Get_Case</targetReference>
@@ -265,6 +290,21 @@
                 <targetReference>QA_Action_Lead_Rules</targetReference>
             </connector>
             <label>Hello</label>
+        </rules>
+        <rules>
+            <name>Test_Path</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fxSuggestionLine</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Test</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Case</targetReference>
+            </connector>
+            <label>Test</label>
         </rules>
     </decisions>
     <description>Case deflection: for a New Case finds the 5 most recent closed Cases of the same Type, records them in a suggestion Task, waits N hours and either moves the Case to Working (not deflected) or removes the suggestion Task (deflected).</description>
@@ -589,7 +629,7 @@
             <targetReference>QA_Fail_Create_Account</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Log_Fault</name>
         <label>Log Fault</label>
@@ -755,6 +795,14 @@ Contact engagement: {!varEngagement}</text>
                 </value>
             </inputParameters>
             <label>Self Service Window Elapsed</label>
+            <outputParameters>
+                <assignToReference>outResult</assignToReference>
+                <name>AlarmTime</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>inCaseId</assignToReference>
+                <name>Status</name>
+            </outputParameters>
         </waitEvents>
     </waits>
 </Flow>
