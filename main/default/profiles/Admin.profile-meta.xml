@@ -154,6 +154,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Log3015Runner</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>LogLimitsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
